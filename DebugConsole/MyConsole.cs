@@ -150,6 +150,8 @@ namespace DebugConsole
                     displayLogs.Add(logItem);
                     DebugLst.Items.Add(msg);
                 }
+
+                AutoScroll();
             }
         }
 
@@ -218,6 +220,15 @@ namespace DebugConsole
         private void NormalCb_CheckedChanged(object sender, EventArgs e)
         {
             UpdateLst();
+        }
+
+        private void AutoScroll()
+        {
+            bool scroll = false;
+            if (this.DebugLst.TopIndex >= this.DebugLst.Items.Count - (int)(this.DebugLst.Height / 30) -1)
+                scroll = true;
+            if (scroll)
+                this.DebugLst.TopIndex = this.DebugLst.Items.Count - (int)(this.DebugLst.Height / 30);
         }
 
         class LogInfo
